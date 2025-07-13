@@ -92,6 +92,39 @@ git remote add origin git@github.com:beiszhihao/test.git
 然后使用git push推送到远程
 
 ```bash
-git push -u origin master
+git push -u origin onlyTT5 # 做开发要修改通常是分支进行
 ```
 
+![image-20250713212312347](https://gitee.com/liweihanNB/typora/raw/master/20250713212312391.png)
+
+在这同时还需要授权验证你的github
+
+![image-20250713212341751](https://gitee.com/liweihanNB/typora/raw/master/20250713212341800.png)
+
+这里我来解释一下
+
+push：将本地仓库与远程仓库合并
+
+-u：将本地仓库分支与远程仓库分支一起合并，就是说将master的分支也提交上去，这样你就可以在远程仓库上看到你在本地仓库的master中创建了多少分支，不加这个参数只将当前的onlyTT5与远程的合并，没有分支的历史记录，也不能切换分支
+
+origin：远程仓库的意思，如果这个仓库是远程的那么必须使用这个选项
+
+master：提交本地matser分支仓库
+
+这个时候你可以在github上看到有提交记录
+
+![image-20250713212847841](https://gitee.com/liweihanNB/typora/raw/master/20250713212915774.png)
+
+但是什么都没有，因为这个分支是main，我们提交的是master
+
+选中它然后切换到onlyTT5
+
+![image-20250713213017558](https://gitee.com/liweihanNB/typora/raw/master/20250713213017598.png)
+
+默认是没有onlyTT5的，这是我们新添加的分支
+
+![image-20250713213055257](https://gitee.com/liweihanNB/typora/raw/master/20250713213055321.png)
+
+看到有文件了。
+
+github上已经默认是main作为主仓库了
