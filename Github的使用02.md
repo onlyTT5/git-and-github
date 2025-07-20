@@ -128,3 +128,15 @@ master：提交本地matser分支仓库
 看到有文件了。
 
 github上已经默认是main作为主仓库了
+
+## git将远程仓库关联到本地和拉取指定分支、切换远程分支：git clone
+
+当我们远程有仓库时，想要关联到本地只需要使用git clone就可以了
+
+新建一个空目录，不要git init
+
+使用git clone会自动帮我们初始化
+
+## github提交本地仓库到远程仓库：git add、git commit、git push
+
+我们修改了master上的分支代码，然后使用git add提交到缓存区，在使用commit提交到本地仓库，在使用push推送到远程就可以了，非常简单，命令都是我们学过的
