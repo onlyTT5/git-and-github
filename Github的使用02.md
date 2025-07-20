@@ -95,3 +95,13 @@ git remote add origin git@github.com:beiszhihao/test.git
 git push -u origin master
 ```
 
+> push：将本地仓库与远程仓库合并
+>
+> -u：将本地仓库分支与远程仓库分支一起合并，就是说将master的分支也提交上去，这样你就可以在远程仓库上看到你在本地仓库的master中创建了多少分支，不加这个参数只将当前的master与远程的合并，没有分支的历史记录，也不能切换分支
+>
+> origin：远程仓库的意思，如果这个仓库是远程的那么必须使用这个选项
+>
+> master：提交本地matser分支仓库
+>
+
+这个时候你可以在github上看到有提交记录
