@@ -105,3 +105,157 @@ git push -u origin master
 >
 
 这个时候你可以在github上看到有提交记录
+<<<<<<< HEAD
+=======
+
+![image-20250713212847841](https://gitee.com/liweihanNB/typora/raw/master/20250713212915774.png)
+
+但是什么都没有，因为这个分支是main，我们提交的是master
+
+选中它然后切换到onlyTT5
+
+![image-20250713213017558](https://gitee.com/liweihanNB/typora/raw/master/20250713213017598.png)
+
+默认是没有onlyTT5的，这是我们新添加的分支
+
+![image-20250713213055257](https://gitee.com/liweihanNB/typora/raw/master/20250713213055321.png)
+
+看到有文件了。
+
+github上已经默认是main作为主仓库了
+
+## git将远程仓库关联到本地和拉取指定分支、切换远程分支：git clone
+
+当我们远程有仓库时，想要关联到本地只需要使用git clone就可以了
+
+新建一个空目录，不要git init
+
+使用git clone会自动帮我们初始化
+
+## github提交本地仓库到远程仓库：git add、git commit、git push
+
+我们修改了master上的分支代码，然后使用git add提交到缓存区，在使用commit提交到本地仓库，在使用push推送到远程就可以了，非常简单，命令都是我们学过的
+
+![image-20250720200654791](https://gitee.com/liweihanNB/typora/raw/master/20250720200701907.png)
+
+## git修改分支名称：git branch
+
+使用-m选项
+
+git branch -m 分支名 新的分支名
+
+## git保存当前工作切换分支：git stash
+
+在你当前工作区修改了文件或者其它功能时，你想要切换或者创建到其它分区是不可能的，如：
+
+![image-20250720200758877](https://gitee.com/liweihanNB/typora/raw/master/20250720200758914.png)
+
+我们分支修改了内容，想要切换到其它分区git会终止你这样操作，为的是防止丢失当前工作区内容。
+
+我们可以使用git stash命令来保存当前工作状态
+
+```bash
+git stash
+```
+
+保存工作状态之后可以使用git stash list查看当前存储了多少工作状态
+
+```bash
+git stash list
+```
+
+![image-20250720201036481](https://gitee.com/liweihanNB/typora/raw/master/20250720201036526.png)
+
+当在别的分支做完事情之后，在切换回刚刚的分支，然后在刚刚的分支中将状态恢复
+
+```bash
+git status pop
+```
+
+![image-20250720201139319](https://gitee.com/liweihanNB/typora/raw/master/20250720201139366.png)
+
+git stash pop会将list保存的列表也给删除掉
+
+git stash apply 不会删除列表里的内容会默认恢复第一个
+
+如果想恢复指定内容可以使用git stash apply list名称
+
+git stash drop list名称可以移除指定list
+
+git stash clear 移除所有lsit
+
+git stash show 查看栈中最新保存的stash和当前目录的差异。
+
+注意stash是以栈的方式保存的，先进后出。
+
+准确来说，这个命令的作用就是为了解决git不提交代码不能切换分支的问题。
+
+## git远程删除分支后本地git branch -a依然看得到的问题：git remote 
+
+这个问题是因为本地没有更新分支缓存
+
+可以使用remote命令对远程仓库进行操作
+
+使用 `git remote show origin命令查看远程仓库信息`
+
+```bash
+ git remote show origin
+```
+
+![image-20250720201445295](https://gitee.com/liweihanNB/typora/raw/master/20250720201445345.png)
+
+## git强制合并分支：--allow-unrelated-histories
+
+当我们在使用两个不同的分支时或此分支不是从原生仓库中分支出来的，想要合并不符合GIT规则，所以会弹出：fatal: refusing to merge unrelated histories 的错误，比如当我们在本地开发好了，但是并没有在一开始关联远程仓库，若想提交就会出现这样的错误，我们先拉取下来以后合并分支在后面加上这条语句就可以了
+
+```bash
+git merge master --allow-unrelated-histories
+```
+
+## Git新增分支操作：git switch、git restore
+
+这两个命令是git 2.23以后引入的命令，目的是为了提供对新手更友好的分支操作，最早我们使用的是git checkout命令来对分支进行操作，这个命令相对于复杂了许多，使用很多子参数来进行操作，为此git新增了两个命令：switch、restore，switch是用来切换分支与新增分支的，而restore用来撤销文件的修改，使其变得更明确一点
+切换分支：
+
+```bash
+git switch dev
+```
+
+注意如果分支不存在，是不会创建的
+
+切换到commit ID：
+
+切换到指定id并创建一个分支，我们称之为分离HEAD状态
+
+```bash
+git switch -d f8c540805b7e16753c65619ca3d7514178353f39
+```
+
+只需要加上-d参数就可以了，而checkout是不需要加-d的，在switch里一切变得明确了很多
+
+如果要合并一个分支必须加上-b
+
+```bash
+git switch -b dev
+```
+
+创建分支则是-c
+
+```bash
+git switch -c dev
+```
+
+git restore命令是用来撤销提交与修改的，如：
+
+```bash
+git restore file
+```
+
+使用这条命令会将文件从暂存区删除
+
+```bash
+git restore file
+```
+
+这条命令会不会将文件从暂存区里删除，会将文件在暂存区里的状态覆盖到工作区，如我在工作区对这个文件又进行了修改，那么使用这个命令可以将这个文件在暂存区里的内容恢复到工作区
+>>>>>>> develop
